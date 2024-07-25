@@ -316,7 +316,7 @@ h1, h2, .h1 {
   line-height: 1.2em; }
 
 h2, .h2 {
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   line-height: 1.2em; }
 
 h3, .h3 {
@@ -1721,6 +1721,15 @@ fieldset:disabled a.btn {
     .btn-dark:not(:disabled):not(.disabled):active:focus, .btn-dark:not(:disabled):not(.disabled).active:focus,
     .show > .btn-dark.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5); }
+
+      @media (min-width: 768px) {
+        .btn-md-lg {
+          padding: 0.5rem 1rem;
+          font-size: 1.25rem;
+          line-height: 1.5;
+          border-radius: 0.3rem;
+        }
+      }
 
 .btn-outline-primary {
   color: #95C894;
@@ -5076,7 +5085,7 @@ footer a {
   border-radius: 50%;
   display: inline-block;
   vertical-align: middle;
-  background-color: #ffffff;
+  background-color: #B0ADAD;
   margin-right: 1rem;
   color: #5cc72a; }
   .icon-box .icon-box-inner {
