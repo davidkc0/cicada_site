@@ -84,6 +84,13 @@ p {
   margin-top: 0;
   margin-bottom: 1rem; }
 
+
+  @media (max-width: 767.98px) {
+    .responsive-heading {
+      font-size: 4rem !important; 
+    }
+  }
+
 abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
