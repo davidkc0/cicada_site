@@ -402,7 +402,7 @@ mark,
 .blockquote-footer {
   display: block;
   font-size: 80%;
-  color: #adb5bd; }
+  color: #F6F3F3; }
   .blockquote-footer::before {
     content: "\2014 \00A0"; }
 
@@ -2260,7 +2260,7 @@ button.bg-danger:focus {
   background-color: #e3002c !important; }
 
 .bg-light {
-  background-color: #f8f9fa !important; }
+  background-color: #F6F3F3 !important; }
 
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,
@@ -5092,7 +5092,7 @@ footer a {
   border-radius: 50%;
   display: inline-block;
   vertical-align: middle;
-  background-color: #B0ADAD;
+  background-color: #F6F3F3;
   margin-right: 1rem;
   color: #5cc72a; }
   .icon-box .icon-box-inner {
