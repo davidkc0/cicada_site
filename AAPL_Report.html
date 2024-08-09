@@ -1,104 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VVXVLB1W7H"></script>
-    <script>
-         window.dataLayer = window.dataLayer || [];
-         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
- 
-         gtag('config', 'G-VVXVLB1W7H');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GekkoAI AAPL Report</title>
+    <title>GekkoAI Analyst report for AAPL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-size: 18px;
+            font-family: 'IBM Plex Serif', serif;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px; /* Increase this value to make the content wider */
+            width: 90%; /* This ensures some margin on very wide screens */
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-family: 'Arimo', sans-serif;
+            
+            font-weight: 800;
+            font-style: normal;
+            text-align: center;
+            color: #333;
+        }
+
+        h1 .ticker {
+        color: #888; /* Grey color for the ticker */
+        }
+        h2 {
+            font-family: 'Arimo', sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            color: #333;
+
+        }
+        .star-icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+        .stock-image-container {
+            max-width: 100%;
+            margin: 20px 0;
+            position: relative;
+        }
+        .stock-image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .expand-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .overlay-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .overlay-content img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            font-family: 'Arimo', sans-serif;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .info-item {
+            text-align: center;
+            flex: 1;
+        }
+        .info-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .info-value {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 2px;
+        }
+        .info-date {
+            font-size: 0.8em;
+            color: #888;
+        }
+       
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0;">
+<body style="line-height: 1.6; color: #333; margin: 0; padding: 0;">
     <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #f0f0f0;">
         <tr>
             <td align="center" style="padding: 20px;">
-                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 600px; background-color: #ffffff; border: 1px solid #ddd; border-radius: 5px;">
+                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 800px; background-color: #ffffff; border: 1px solid #ddd; border-radius: 5px;">
                     <tr>
                         <td style="padding: 20px;">
                             <div style="text-align: center; margin-bottom: 20px;">
                                 <svg class="img-fluid" width="235" height="64" viewBox="0 0 1712 466" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M517.4 309.8L567 336.6C557.8 349.133 546.267 359.2 532.4 366.8C518.533 374.4 503.4 378.2 487 378.2C468.6 378.2 451.8 373.467 436.6 364C421.533 354.533 409.467 341.867 400.4 326C391.467 310 387 292.333 387 273C387 258.333 389.6 244.667 394.8 232C400 219.2 407.133 208 416.2 198.4C425.4 188.667 436.067 181.067 448.2 175.6C460.333 170.133 473.267 167.4 487 167.4C503.4 167.4 518.533 171.2 532.4 178.8C546.267 186.4 557.8 196.6 567 209.4L517.4 236.2C513.267 231.8 508.533 228.467 503.2 226.2C498 223.8 492.6 222.6 487 222.6C478.467 222.6 470.8 224.933 464 229.6C457.333 234.267 452 240.467 448 248.2C444.133 255.8 442.2 264.067 442.2 273C442.2 281.8 444.2 290 448.2 297.6C452.2 305.2 457.533 311.333 464.2 316C471 320.667 478.6 323 487 323C492.733 323 498.2 321.8 503.4 319.4C508.6 317 513.267 313.8 517.4 309.8ZM617.922 173H673.122V373H617.922V173ZM645.922 150C637.922 150 631.189 147.333 625.722 142C620.255 136.667 617.522 130.067 617.522 122.2C617.522 114.333 620.255 107.733 625.722 102.4C631.189 97.0667 637.855 94.4 645.722 94.4C653.589 94.4 660.189 97.0667 665.522 102.4C670.989 107.733 673.722 114.333 673.722 122.2C673.722 130.067 671.055 136.667 665.722 142C660.522 147.333 653.922 150 645.922 150ZM857.978 309.8L907.578 336.6C898.378 349.133 886.845 359.2 872.978 366.8C859.111 374.4 843.978 378.2 827.578 378.2C809.178 378.2 792.378 373.467 777.178 364C762.111 354.533 750.045 341.867 740.978 326C732.045 310 727.578 292.333 727.578 273C727.578 258.333 730.178 244.667 735.378 232C740.578 219.2 747.711 208 756.778 198.4C765.978 188.667 776.645 181.067 788.778 175.6C800.911 170.133 813.845 167.4 827.578 167.4C843.978 167.4 859.111 171.2 872.978 178.8C886.845 186.4 898.378 196.6 907.578 209.4L857.978 236.2C853.845 231.8 849.111 228.467 843.778 226.2C838.578 223.8 833.178 222.6 827.578 222.6C819.045 222.6 811.378 224.933 804.578 229.6C797.911 234.267 792.578 240.467 788.578 248.2C784.711 255.8 782.778 264.067 782.778 273C782.778 281.8 784.778 290 788.778 297.6C792.778 305.2 798.111 311.333 804.778 316C811.578 320.667 819.178 323 827.578 323C833.311 323 838.778 321.8 843.978 319.4C849.178 317 853.845 313.8 857.978 309.8ZM1106.86 173H1162.06V373H1106.66L1104.06 352.2C1098.86 359.933 1092.2 366.2 1084.06 371C1075.93 375.8 1066.4 378.2 1055.46 378.2C1040.53 378.2 1026.6 375.4 1013.66 369.8C1000.73 364.2 989.329 356.467 979.463 346.6C969.596 336.733 961.863 325.333 956.263 312.4C950.796 299.333 948.063 285.333 948.063 270.4C948.063 256.133 950.663 242.8 955.863 230.4C961.063 218 968.396 207.067 977.863 197.6C987.329 188.133 998.196 180.733 1010.46 175.4C1022.86 170.067 1036.2 167.4 1050.46 167.4C1062.73 167.4 1073.73 170 1083.46 175.2C1093.33 180.4 1101.93 187 1109.26 195L1106.86 173ZM1054.06 325.2C1063.13 325.2 1071.33 322.867 1078.66 318.2C1086 313.533 1091.8 307.267 1096.06 299.4C1100.33 291.4 1102.46 282.6 1102.46 273C1102.46 263.267 1100.33 254.467 1096.06 246.6C1091.8 238.733 1086 232.467 1078.66 227.8C1071.33 223.133 1063.13 220.8 1054.06 220.8C1044.86 220.8 1036.53 223.133 1029.06 227.8C1021.6 232.467 1015.66 238.8 1011.26 246.8C1006.86 254.667 1004.66 263.4 1004.66 273C1004.66 282.6 1006.86 291.4 1011.26 299.4C1015.8 307.267 1021.8 313.533 1029.26 318.2C1036.73 322.867 1045 325.2 1054.06 325.2ZM1369.34 73H1424.54V373H1369.34V351.8C1363.21 359.533 1355.61 365.867 1346.54 370.8C1337.48 375.733 1327.14 378.2 1315.54 378.2C1301.01 378.2 1287.41 375.467 1274.74 370C1262.08 364.533 1250.88 357 1241.14 347.4C1231.54 337.667 1224.01 326.467 1218.54 313.8C1213.08 301.133 1210.34 287.533 1210.34 273C1210.34 258.467 1213.08 244.867 1218.54 232.2C1224.01 219.533 1231.54 208.4 1241.14 198.8C1250.88 189.067 1262.08 181.467 1274.74 176C1287.41 170.533 1301.01 167.8 1315.54 167.8C1327.14 167.8 1337.48 170.267 1346.54 175.2C1355.61 180 1363.21 186.333 1369.34 194.2V73ZM1316.34 325.2C1325.41 325.2 1333.61 322.867 1340.94 318.2C1348.28 313.533 1354.08 307.267 1358.34 299.4C1362.61 291.4 1364.74 282.6 1364.74 273C1364.74 263.267 1362.61 254.467 1358.34 246.6C1354.08 238.733 1348.28 232.467 1340.94 227.8C1333.61 223.133 1325.41 220.8 1316.34 220.8C1307.14 220.8 1298.81 223.133 1291.34 227.8C1283.88 232.467 1277.94 238.8 1273.54 246.8C1269.14 254.667 1266.94 263.4 1266.94 273C1266.94 282.6 1269.14 291.4 1273.54 299.4C1278.08 307.267 1284.08 313.533 1291.54 318.2C1299.01 322.867 1307.28 325.2 1316.34 325.2ZM1639.63 173H1694.83V373H1639.43L1636.83 352.2C1631.63 359.933 1624.96 366.2 1616.83 371C1608.69 375.8 1599.16 378.2 1588.23 378.2C1573.29 378.2 1559.36 375.4 1546.43 369.8C1533.49 364.2 1522.09 356.467 1512.23 346.6C1502.36 336.733 1494.63 325.333 1489.03 312.4C1483.56 299.333 1480.83 285.333 1480.83 270.4C1480.83 256.133 1483.43 242.8 1488.63 230.4C1493.83 218 1501.16 207.067 1510.63 197.6C1520.09 188.133 1530.96 180.733 1543.23 175.4C1555.63 170.067 1568.96 167.4 1583.23 167.4C1595.49 167.4 1606.49 170 1616.23 175.2C1626.09 180.4 1634.69 187 1642.03 195L1639.63 173ZM1586.83 325.2C1595.89 325.2 1604.09 322.867 1611.43 318.2C1618.76 313.533 1624.56 307.267 1628.83 299.4C1633.09 291.4 1635.23 282.6 1635.23 273C1635.23 263.267 1633.09 254.467 1628.83 246.6C1624.56 238.733 1618.76 232.467 1611.43 227.8C1604.09 223.133 1595.89 220.8 1586.83 220.8C1577.63 220.8 1569.29 223.133 1561.83 227.8C1554.36 232.467 1548.43 238.8 1544.03 246.8C1539.63 254.667 1537.43 263.4 1537.43 273C1537.43 282.6 1539.63 291.4 1544.03 299.4C1548.56 307.267 1554.56 313.533 1562.03 318.2C1569.49 322.867 1577.76 325.2 1586.83 325.2Z" fill="black"/>
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M68.8482 85.4978L66.9421 51.3666C66.734 47.6414 68.2706 44.0315 71.0989 41.6012L118.389 0.964079C119.113 0.342006 120.036 0 120.99 0H152.019C152.942 0 153.837 0.320084 154.55 0.905793L204.136 41.5962C207.093 44.0224 208.715 47.7157 208.501 51.5365L206.492 87.5076L273.429 286.134C275.104 291.105 275.447 296.428 274.422 301.573L250.017 424.122C248.5 431.737 244.745 438.725 239.234 444.189L219.573 463.68C215.071 468.143 207.417 465.83 206.135 459.618L177.841 322.548L158.149 362.799C154.261 370.745 147.101 375.153 139.57 376.056C137.709 376.751 135.606 376.752 133.745 376.06C126.014 375.142 118.679 370.54 114.881 362.29L96.8373 323.105L68.8653 458.619C67.583 464.831 59.9293 467.144 55.4268 462.68L35.7661 443.19C30.2546 437.726 26.4998 430.738 24.9833 423.123L0.577755 300.574C-0.446797 295.429 -0.104401 290.105 1.5707 285.135L68.8482 85.4978ZM149.878 9.9905L152.184 11.8826L136.601 25.0479L121.012 11.8777L123.208 9.9905H149.878ZM144.364 31.5628L160.034 18.3242L197.808 49.3222C198.301 49.7266 198.571 50.3421 198.536 50.9789L197.157 75.6628L144.364 31.5628ZM136.604 38.1238L137.93 39.2444L137.952 39.2189L194.827 86.7282L194.317 89.1124L138.846 109.691L81.4096 88.383L81.0498 86.6229L136.604 38.1238ZM128.518 31.9257L128.494 31.8967L128.863 31.5846L113.34 18.4699L77.6003 49.1815C77.1289 49.5865 76.8728 50.1882 76.9075 50.809L78.3012 75.7659L128.518 31.9257ZM89.8001 307.823L59.8354 452.99L42.7897 436.091C38.6914 432.028 35.8993 426.832 34.7717 421.17L10.3661 298.621C9.68311 295.191 9.91137 291.642 11.0281 288.328L70.3456 112.311L79.6094 278.187C79.9245 283.83 81.2999 289.363 83.6635 294.496L89.8001 307.823ZM93.2018 291.343L92.728 290.314C90.8896 286.322 89.8199 282.018 89.5748 277.629L81.9319 140.775L103.004 243.856L93.2018 291.343ZM100.239 306.626L123.945 358.109C124.794 359.953 125.946 361.484 127.298 362.702L108.075 268.664L100.239 306.626ZM146.098 362.586C147.32 361.456 148.374 360.062 149.185 358.405L174.544 306.572L166.446 267.343L146.098 362.586ZM185.009 307.897L215.165 453.989L232.21 437.09C236.309 433.027 239.101 427.832 240.228 422.169L264.634 299.62C265.317 296.19 265.089 292.641 263.972 289.327L204.995 114.321L195.874 277.639C195.539 283.637 194.007 289.507 191.367 294.902L185.009 307.897ZM193.533 140.556L185.909 277.081C185.648 281.746 184.456 286.312 182.403 290.508L181.712 291.922L171.63 243.08L193.533 140.556ZM145.766 117.779L191.845 100.684L166.614 218.782L145.766 117.779ZM137.397 126.61L161.431 243.044L136.694 358.829L113.193 243.866L137.397 126.61ZM129.234 116.78L108.122 219.058L83.7663 99.9119L129.234 116.78Z" fill="black"/>
-                                </svg>     
-                                    
+                                </svg> 
                             </div>
                             
-                            <h1 style="text-align: center; color: #333;">GekkoAI Analyst Report for AAPL</h1>
+                            <h1 style="text-align: center; color: #333;">GekkoAI Analyst report for Apple Inc.<span class="ticker">(AAPL)</span></h1>
                     
-                            <div style="border-top: 2px solid #ddd; margin: 20px 0;"></div>
+                            <div style="border-top: 1px solid #ddd; margin: 20px 0;"></div>
+                            
+                            <!-- Updated information row with dates -->
+                            <div class="info-row">
+                                <div class="info-item">
+                                    <div class="info-label">Last Price</div>
+                                    <div class="info-value">$213.59</div>
+                                    <div class="info-date">08 Aug 2024</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Fair Value Estimate</div>
+                                    <div class="info-value">$180</div>
+                                    <div class="info-date">08 Aug 2024</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Market Cap</div>
+                                    <div class="info-value">$3247.44B</div>
+                                    <div class="info-date">08 Aug 2024</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Sector</div>
+                                    <div class="info-value">Technology</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">Overall Rating</div>
+                                    <div class="info-value"><img src="images/star_filled.png" alt="Full Star" class="star-icon"><img src="images/star_filled.png" alt="Full Star" class="star-icon"><img src="images/star_filled.png" alt="Full Star" class="star-icon"><img src="images/star_filled.png" alt="Full Star" class="star-icon"><img src="images/star_filled.png" alt="Full Star" class="star-icon"></div>
+                                </div>
+                            </div>
+
+                            <div class="stock-image-container">
+                                <img src="./output_graph/AAPL_comparison.png" alt="Image">
+                                <button class="expand-button" onclick="expandImage()">Expand</button>
+                            </div>
+
                             
                             
             <div class="section">
-                <h2>Summary of Key Findings</h2>
+                <h2>Notable News</h2>
                 <div class="content">
-                    
-<br><br><b>Technical Analysis:</b>
- Overall neutral outlook, with potential for a bearish trend due to a MACD crossover signal.
- Potential options strategies: Bull Call Spread (conservative), Bear Put Spread (moderate), Iron Condor (aggressive).
- Conservative, moderate, and aggressive trading strategies provided.
-
-<br><br><b>News Sentiment Analysis:</b>
- Overall somewhat bullish sentiment, with some concerns about possible economic headwinds.
- Majority of news articles covered Apple's earnings, financial performance, and AI-related developments.
-
-<br><br><b>10-K Report Analysis:</b>
- Mixed financial performance in fiscal 2023, with declining overall revenue and net income.
- Strong growth in Services segment and improved gross margins.
- Key risks include economic downturns, supply chain disruptions, and failure to innovate.
-
-<br><br><b>10-Q Report Analysis:</b>
- Slight decline in overall revenue and net income in Q2 2024 compared to the same quarter last year.
- Strong Services growth and improved gross margins.
- Potential impact on stock performance: Mixed results and ongoing challenges may cause some volatility.
- Regulatory and legal risks are a concern.
-
-<br><br><b>Peer Comparison:</b>
- AAPL compares favorably to its peers in terms of market cap, P/E ratio, and revenue growth.
- However, it has a lower profit margin than some peers, such as DELL and SMCI.
-
-
+                    Based on the provided news items, here's a summary of the major news and headlines for Apple (AAPL) and the overall sentiment:<br><br>Major News and Headlines:<br><br>1. Apple revised its DMA compliance plan for the App Store in the EU, applying fewer restrictions and a new fee structure.<br><br>2. Apple changed its EU app store policy to allow developers to communicate with customers outside the app, following a European Commission probe.<br><br>3. Warren Buffett's Berkshire Hathaway sold a significant portion of its Apple stock holdings.<br><br>4. Apple is reportedly planning a new version of the Mac mini with an M4 chip, which could be its smallest desktop computer yet.<br><br>5. Apple is under investigation by the European Commission for suspected non-compliance with the Digital Markets Act (DMA).<br><br>6. There's speculation that Apple might charge for its AI product in the future.<br><br>Overall Sentiment:<br><br>The overall sentiment for Apple (AAPL) appears to be mixed to slightly positive:<br><br>Positive factors:<br>- Apple is making changes to comply with EU regulations, which could reduce regulatory pressure.<br>- The company is continuing to innovate with new products like the smaller Mac mini.<br>- Apple's stock is still considered attractive by some analysts despite recent dips.<br><br>Negative factors:<br>- Warren Buffett's sale of Apple stock has raised some concerns among investors.<br>- Ongoing regulatory scrutiny in the EU could pose challenges.<br>- There's uncertainty around Apple's AI strategy and potential pricing.<br><br>Despite some challenges, Apple's stock was up 1.62% at the time of reporting, suggesting that investors remain generally optimistic about the company's prospects.
                 </div>
             </div>
             <div class="divider"></div>
             
             <div class="section">
-                <h2>Overall Assessment</h2>
+                <h2>Technical Analysis</h2>
                 <div class="content">
-                    
-Apple's current position is somewhat uncertain due to mixed financial results, potential macroeconomic headwinds, and regulatory challenges. However, the company's strong financial position, continued innovation efforts, and the growing Services segment provide a solid foundation for future growth.
-
-AAPL's future performance will depend on its ability to navigate the current economic environment, successfully manage regulatory challenges, and continue innovating in both hardware and services.
-
-
+                    <br><br><b>AAPL Technical Analysis Summary:</b>
+ <br><br><b>Trend:</b>Potential trend reversal or beginning of uptrend.
+ <br><br><b>Momentum:</b>Oversold, indicating potential buying opportunity.
+ <br><br><b>Support:</b>Price near lower Bollinger Band.
+ <br><br><b>Potential Trading Strategies:</b>     Conservative: Long call options, buy and hold.
+     Moderate: Short put options, support and resistance levels.
+     Aggressive: Bullish spreads, bearish spreads, scalping, momentum trading.
                 </div>
             </div>
             <div class="divider"></div>
             
             <div class="section">
-                <h2>Potential Risks and Opportunities</h2>
+                <h2>10-K Report Analysis</h2>
                 <div class="content">
-                    
-<br><br><b>Risks:</b>
- Economic slowdown or recession.
- Increased competition in the smartphone and services markets.
- Regulatory scrutiny and legal challenges.
- Failure to innovate or maintain competitive products.
+                    <br><br><b>1. 10-K Report Analysis:</b>
+<br><br><b>Key Findings:</b>
+ <br><br><b>Mixed Financial Performance:</b>Despite a decline in overall sales and net income, Apple reported growth in services revenue and cost savings.
+ <br><br><b>Impact on Products:</b>Mac and non-Pro iPhone sales declined, while other products performed better.
+ <br><br><b>Gross Margin Impact:</b>Unfavorable currency fluctuations and lower volume affected gross margins, but cost savings and product mix helped offset the impact.
+ <br><br><b>Strong Liquidity and Cash Position:</b>The company maintains a strong cash position that provides financial stability.
+ <br><br><b>Investment in R&D:</b>Apple continues to invest heavily in research and development, indicating a commitment to innovation and long-term growth.
 
-<br><br><b>Opportunities:</b>
- Continued growth in the Services segment.
- Expansion into new markets and products.
- Strong brand loyalty and customer base.
- Potential for share buybacks and dividend increases.
+<br><br><b>Implications for Stock Performance:</b>
+ The mixed financial performance may create short-term concerns for investors.
+ However, Apple's strong fundamentals, cash position, and R&D investment suggest long-term growth potential.
+ The decline in certain product sales may raise questions about future demand and market saturation.
+ The growth in services revenue highlights Apple's ability to diversify its revenue streams.
 
+<br><br><b>Other Considerations:</b>
+ <br><br><b>Macroeconomic Factors:</b>Economic conditions and supply chain disruptions could impact Apple's revenue and profitability.
+ <br><br><b>Competition:</b>Apple faces intense competition in the smartphone, computer, and services markets.
+ <br><br><b>Regulatory Environment:</b>Governmental regulations, particularly on privacy and antitrust, could impact Apple's operations.
 
+<br><br><b>Conclusion:</b>
+Apple's 2023 10-K Report presents a mixed financial performance with potential short-term implications for stock performance. However, the company's strong fundamentals, cash position, and commitment to innovation suggest long-term growth potential. Investors should consider the company's response to macroeconomic factors, competition, and regulatory changes when making investment decisions.
+                </div>
+            </div>
+            <div class="divider"></div>
+            
+            <div class="section">
+                <h2>10-Q Report Analysis</h2>
+                <div class="content">
+                    <br><br><b>Financial Performance:</b>
+ Apple's overall financial performance in Q3 2024 was positive, with net sales growing by 5% year-over-year.
+ This growth was driven by strong performance in the Americas, Europe, and Rest of Asia Pacific regions, as well as higher net sales of Services and iPad.
+ However, net sales in Greater China decreased due to lower net sales of iPhone.
+ The company's gross margin percentage increased slightly, primarily due to cost savings and a different product mix.
+ Total operating expenses grew by 17%, driven by increases in research and development, and selling, general and administrative expenses.
+ The effective tax rate decreased, primarily due to a lower effective tax rate on foreign earnings and lower tax benefits from share-based compensation.
+
+<br><br><b>Key Risks and Uncertainties:</b>
+ <br><br><b>Global economic environment:</b>Apple faces risks related to inflation, interest rate increases, and economic downturns.
+ <br><br><b>Competition:</b>The company faces competition from other technology companies, including Samsung, Google, and Microsoft.
+ <br><br><b>Consumer preferences:</b>Changes in consumer preferences and technology trends could impact Apple's product demand.
+ <br><br><b>Supply chain disruptions:</b>Apple relies on a complex supply chain, which is vulnerable to disruptions.
+ <br><br><b>Regulatory changes:</b>Apple faces regulatory scrutiny and potential changes in regulations that could impact its business.
+
+<br><br><b>Recent Accounting Pronouncements:</b>
+ Apple has adopted several new accounting pronouncements, including ASU 2023-09 and ASU 2023-07.
+ These new pronouncements will have a modest impact on the company's financial statements.
+
+<br><br><b>Conclusion:</b>
+ Apple is a well-managed company with a strong business model.
+ The company's financial performance in Q3 2024 was strong, and the company is well-positioned for continued growth in the future.
+ However, Apple faces a number of risks and uncertainties that could affect its future financial performance.
+ The company's management team is actively monitoring these risks and uncertainties, and is taking steps to mitigate their potential impact on the business.
+
+<br><br><b>Additional Analysis:</b>
+ Apple's Services segment continues to be a strong growth driver, with revenue increasing by 14% year-over-year.
+ The company's iPhone revenue declined slightly, but it remains Apple's largest product category.
+ Apple is facing antitrust investigations and legal challenges terkait with its App Store and ecosystem control.
+ The company's stock price has outperformed the broader market in recent months, indicating investor confidence in its long-term growth prospects.
+                </div>
+            </div>
+            <div class="divider"></div>
+            
+            <div class="section">
+                <h2>Peer Comparison</h2>
+                <div class="content">
+                    <br><br><b>Peer Comparison Analysis for AAPL</b>
+<br><br><b>Market Cap:</b>AAPL has a significantly larger market capitalization compared to its peers, indicating its dominance in the industry.
+
+<br><br><b>P/E Ratio:</b>AAPL's P/E ratio of 32.46 is higher than most of its peers, suggesting that investors are willing to pay a premium for its growth potential. However, it is lower than PSTG's extremely high P/E ratio.
+
+<br><br><b>Revenue Growth:</b>AAPL's revenue growth of 4.9% is relatively low compared to some of its peers, such as SMCI (143.0%) and IONQ (106.4%). However, it is still positive, indicating the company's ability to generate consistent revenue.
+
+<br><br><b>Profit Margin:</b>AAPL's profit margin of 26.44% is impressive and significantly higher than most of its peers. This indicates the company's strong profitability and ability to generate substantial profits.
+
+<br><br><b>Return on Equity (ROE):</b>AAPL's ROE of 160.58% is exceptionally high, demonstrating its ability to generate a high return on shareholders' investments. It is far superior to the ROE of most of its peers.
+
+<br><br><b>Key Takeaways:</b>
+ AAPL is a dominant player in the industry with a large market cap.
+ Its P/E ratio suggests that investors are valuing its growth potential.
+ Revenue growth is relatively low but positive, indicating consistent performance.
+ Profit margin and ROE are exceptionally strong, demonstrating profitability and shareholder value creation.
+
+<br><br><b>Overall:</b>Based on the peer comparison, AAPL appears to be a well-performing company with strong fundamentals and growth potential. However, it is trading at a premium compared to some of its peers, so investors may want to consider its valuation before investing.
+                </div>
+            </div>
+            <div class="divider"></div>
+            
+            <div class="section">
+                <h2>Wall Street Bets Sentiment Analysis</h2>
+                <div class="content">
+                    <br><br><b>Wall Street Bets Sentiment Analysis</b>
+ <br><br><b>Current Sentiment:</b>No data available as no comments were posted to /WallStreetBets on the date provided.
+
+ <br><br><b>Historical Sentiment:</b>
+     Over the past 20 days, the sentiment towards AAPL on Wall Street Bets has been mixed.
+     The highest POS/NEG ratio (2.74) was observed on August 6th, indicating a positive sentiment.
+     The lowest POS/NEG ratio (0.80) was observed on July 25th, indicating a negative sentiment.
+     The average POS/NEG ratio over the last 20 days is 1.35, indicating a slightly negative overall sentiment.
+
+<br><br><b>Interpretation:</b>
+Based on the historical sentiment data, AAPL has not been a popular topic of discussion on Wall Street Bets recently. The mixed sentiment and lack of recent comments suggest that the community does not have a strong consensus on the stock's performance or outlook.
                 </div>
             </div>
             <div class="divider"></div>
@@ -106,64 +323,46 @@ AAPL's future performance will depend on its ability to navigate the current eco
             <div class="section">
                 <h2>Recommended Investment Strategies</h2>
                 <div class="content">
-                    
-<br><br><b>Short-Term:</b>
- Consider Bull Call Spread or Iron Condor options strategies for limited gains or downside protection.
- Conservative trading strategy: Buy on dips and sell on rallies within Bollinger Bands.
+                    <br><br><b>Conservative Stock Trading Strategy</b>
+ <br><br><b>Buy and hold:</b>Purchase shares of AAPL and hold them for the long term. This strategy is suitable for investors with a low risk tolerance who believe in Apple's long-term growth prospects.
+ <br><br><b>Long call options:</b>Purchase call options with a strike price below the current stock price, giving you the right but not the obligation to buy the stock at the strike price in the future. This strategy provides limited upside potential but also limits potential losses.
 
-<br><br><b>Long-Term:</b>
- Buy-and-hold strategy for investors who believe in Apple's long-term growth potential.
- Consider investing in AAPL as part of a diversified portfolio.
+<br><br><b>Moderate Stock Trading Strategy</b>
+ <br><br><b>Short put options:</b>Sell put options with a strike price slightly below the current stock price, giving you the obligation to buy the stock at the strike price if the stock price falls below it. This strategy generates income as long as the stock price stays above the strike price, but it also carries the risk of being forced to buy the stock at a higher price than the current market price.
+ <br><br><b>Support and resistance levels:</b>Identify support and resistance levels based on technical analysis and trade within those levels. Buy when the stock price breaks above a resistance level and sell when it breaks below a support level. This strategy can provide consistent returns with limited risk.
 
-
+<br><br><b>Aggressive Stock Trading Strategy</b>
+ <br><br><b>Bullish spreads:</b>Buy a call option with a lower strike price and sell a call option with a higher strike price. This strategy profits if the stock price rises significantly.
+ <br><br><b>Bearish spreads:</b>Sell a put option with a higher strike price and buy a put option with a lower strike price. This strategy profits if the stock price falls significantly.
+ <br><br><b>Scalping:</b>Buy and sell shares of AAPL within a short time frame, taking advantage of small price movements. This strategy requires a high level of skill and risk tolerance.
                 </div>
             </div>
             <div class="divider"></div>
             
-            <div class="section">
-                <h2>Sentiment from Wall Street Bets</h2>
-                <div class="content">
-                    
- Neutral sentiment on AAPL, with slightly more positive than negative comments.
- Recent comment volume has been around 1.5%.
- Wall Street Bets sentiment may not be representative of the overall market, but it can provide insights into retail investor sentiment.
 
-
-                </div>
-            </div>
-            <div class="divider"></div>
-            
-            <div class="section">
-                <h2>Discrepancies or Conflicting Information</h2>
-                <div class="content">
-                    
- The technical analysis suggests a potential bearish trend, while the news sentiment and company fundamentals are generally positive.
- The 10-K report highlights risks such as economic downturns and supply chain disruptions, while the 10-Q report shows strong Services growth and improved margins.
- It is important to consider all available information and analysis, and not rely solely on one source or perspective.
-
-                </div>
-            </div>
-            <div class="divider"></div>
-            
+                            <div style="border-top: 1px solid #ddd; margin: 20px 0;"></div>
                             
                             <div style="margin-bottom: 20px;">
-                                <h2 style="color: #333;">🤖💬 GekkoAI Commentary</h2>
+                                <h2 style="color: #333;">🤖💬 Commentary</h2>
                                 <div style="background-color: #f9f9f9; border-left: 5px solid #ccc; padding: 10px; margin: 10px 0;">
-                                    <br><b>AAPL Market Commentary:</b>
-AAPL maintains a dominant position in the tech sector as a global leader in consumer electronics, software, and services.
+                                    <br><b>2024 Market Commentary for AAPL</b>
+<br><b>Market Position:</b>
+ AAPL remains a dominant player in the global technology sector, maintaining its position as a blue-chip stock with a large market capitalization.
+ The company's strong brand recognition, loyal customer base, and innovative products continue to drive its market leadership.
 
-<br><b>Key Factors for Investors:</b>
- <br><b>Strong brand recognition:</b>AAPL enjoys high brand loyalty and a large customer base, providing a competitive advantage.
- <br><b>Growth in services:</b>The company is expanding its services revenue, which offers higher margins and recurring income.
- <br><b>Innovation and research:</b>AAPL consistently invests heavily in research and development, driving innovation and new product introductions.
- <br><b>Supply chain challenges:</b>The company faces ongoing supply chain disruptions, which could impact production and affect revenue growth.
- <br><b>Regulatory scrutiny:</b>AAPL is subject to antitrust investigations and regulatory pressure, which could affect its business operations.
- <br><b>Valuation:</b>AAPL trades at a premium valuation relative to its peers, which may limit potential upside.
+<br><b>Significant Factors to Consider:</b>
+ <br><b>Economic Outlook:</b>macroeconomic factors such as inflation, interest rates, and geopolitical events will impact AAPL's overall performance. A slowdown in global economic growth could affect consumer spending on its products.
+ <br><b>Competition:</b>Apple faces intense competition from both legacy hardware makers and emerging technology companies. Investors should monitor Apple's competitive landscape, especially in the smartphone and cloud services markets.
+ <br><b>Product Pipeline:</b>AAPL is expected to release new iPhone models, wearable devices, and other innovative products in 2024. The success of these products will drive revenue growth and investor sentiment.
+ <br><b>Services Revenue:</b>AAPL's services segment, which includes the App Store, Apple Music, and iCloud, has become an increasingly important revenue stream. Investors should monitor the growth and profitability of this segment.
+ <br><b>Regulatory Environment:</b>Apple is subject to ongoing regulatory scrutiny, particularly regarding antitrust concerns. Investors should be aware of any potential regulatory actions that could impact the company's business.
 
-Overall, AAPL remains a strong long-term investment due to its market leadership, growth opportunities, and innovation potential. However, investors should be aware of the company's valuation and ongoing challenges, which could influence short-term price movements.
+<br><b>Investment Considerations:</b>
+ AAPL stock remains a solid investment for long-term growth-oriented investors. However, investors should be aware of the potential risks associated with macroeconomic factors, competition, and regulatory changes.
+ The company's strong financial position, loyal customer base, and continued innovation suggest that it has the potential to maintain its market dominance and generate significant returns for shareholders in 2024 and beyond.
                                 </div>
                             </div>
-                            
+
                             <div style="text-align: center; font-size: 0.8em; color: #666; margin-top: 20px; border-top: 1px solid #ddd; padding-top: 20px;">
                                 <p>© 2024 Cicada Financial Research</p>
                                 <p>Made with 💰 in Austin, TX</p>
@@ -174,5 +373,25 @@ Overall, AAPL remains a strong long-term investment due to its market leadership
             </td>
         </tr>
     </table>
+
+    <div id="imageOverlay" class="overlay">
+        <div class="overlay-content">
+            <img id="expandedImage" src="" alt="Expanded stock comparison">
+            <button class="close-button" onclick="closeOverlay()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function expandImage() {
+            var img = document.querySelector('.stock-image-container img');
+            var expandedImg = document.getElementById('expandedImage');
+            expandedImg.src = img.src;
+            document.getElementById('imageOverlay').style.display = 'flex';
+        }
+
+        function closeOverlay() {
+            document.getElementById('imageOverlay').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
